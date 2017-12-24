@@ -17,11 +17,12 @@ public class AddMenuItemForm {
     private int cheeseId;
 
     //constructors
-    public AddMenuItemForm(Menu menu, Iterable<Cheese> cheeses) {
+    public AddMenuItemForm(Iterable<Cheese> cheeses, Menu menu) {
         this.menu = menu;
         this.cheeses = cheeses;
     }
     //this second no arg constructor is needed for model binding to work
+    //public AddMenuItemForm(Iterable<Cheese> all, Menu menu) { }
     public AddMenuItemForm() {
     }
 

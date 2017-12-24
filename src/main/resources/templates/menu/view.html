@@ -12,7 +12,7 @@
 <ul th:each="cheese : ${menu.cheeses}">
     <li th:text = "${cheese.name}"></li> <!-- maybe needs to be item.name, im 9/10 this is correct-->
 </ul>
-
+<!--p th:unless="${cheeses} and ${cheeses.size()}">no cheese :(</p-->
 <p><a th:href="'/menu/add-item/' + ${menu.id}">Add Cheese</a></p>
 
 </body>

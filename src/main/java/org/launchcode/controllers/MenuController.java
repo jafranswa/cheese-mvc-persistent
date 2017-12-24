@@ -37,7 +37,7 @@ public class MenuController {
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     private String addMenu(Model model) {
-
+        model.addAttribute("title", "Add Menu");
         model.addAttribute(new Menu());
 
         return "menu/add";
@@ -63,19 +63,26 @@ public class MenuController {
         Menu a_menu = menuDao.findOne(Id);
         model.addAttribute("title", a_menu.getName());
         model.addAttribute("menu", a_menu);
+        model.addAttribute("menuId", a_menu.getId());
         return "menu/view";
     }
 
     @RequestMapping(value = "add-item/{Id}", method = RequestMethod.GET)
     private String addItem(@PathVariable("Id") int Id, Model model){
 
-        Menu a_menu = menuDao.findOne(Id);
-        AddMenuItemForm addMenuItemForm = new AddMenuItemForm();
+        Menu menu = menuDao.findOne(Id);
+
+        AddMenuItemForm form = new AddMenuItemForm(
+                cheeseDao.findAll(), menu);
+        model.addAttribute("title", "Add item to menu " + menu.getName());
+        model.addAttribute("form", form);
+        model.addAttribute("menu", menu);
+        /**AddMenuItemForm addMenuItemForm = new AddMenuItemForm();
         addMenuItemForm.setMenu(a_menu);
         addMenuItemForm.setCheeses(cheeseDao.findAll());
         model.addAttribute("form", addMenuItemForm);
         model.addAttribute("title", "Add item to menu " + a_menu.getName());
-        model.addAttribute("menu", a_menu);
+        model.addAttribute("menu", a_menu);*/
 
         return "menu/add-item";
     }
@@ -88,7 +95,7 @@ public class MenuController {
         }
         //addMenuItemForm.setCheeses(cheeseDao.findAll());
         //Cheese theCheese = cheeseDao.findOne( [addMenuItemForm.getCheeseId()]);
-        Cheese theCheese = cheeseDao.findOne(addMenuItemForm.getCheeseId());
+        Cheese theCheese = cheeseDao.findOne(addMenuItemForm.getCheeseId() );
         Menu theMenu = menuDao.findOne(addMenuItemForm.getMenuId());
         theMenu.getCheeses().add(theCheese);
         menuDao.save(theMenu);
