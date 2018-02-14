@@ -52,8 +52,4 @@ public class Menu {
         return cheeses;
     }
 
-    //TODO this setter may need to be deleted.  this is an experement
-    /**public void setCheeses(List<Cheese> cheeses) {
-        this.cheeses = cheeses;
-    }*/
 }

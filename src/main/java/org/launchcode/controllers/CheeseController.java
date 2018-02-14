@@ -11,7 +11,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 
 /**
  * Created by LaunchCode
@@ -25,7 +24,6 @@ public class CheeseController {
     @Autowired
     private CategoryDao categoryDao;
 
-    // Request path: /cheese
     @RequestMapping(value = "")
     public String index(Model model) {
 
@@ -75,17 +73,4 @@ public class CheeseController {
         return "redirect:";
     }
 
-    /**@RequestMapping(value = "edit", method = RequestMethod.GET)
-    public String displayEditForm(Model model, @PathVariable int cheeseId){
-        System.out.println(Integer.toString(cheeseId));
-        model.addAttribute(CheeseData.getById(cheeseId));
-        model.addAttribute("cheeseTypes", CheeseType.values());
-        return "cheese/edit";
-    }
-
-    @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String processEditForm(int cheeseId, String name, String description) {
-
-        return "edit";
-    }*/
 }
